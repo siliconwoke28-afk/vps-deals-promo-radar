@@ -220,4 +220,3 @@ def main():
     print(json.dumps(build(config,data)))
 
 if __name__=='__main__':main()
-

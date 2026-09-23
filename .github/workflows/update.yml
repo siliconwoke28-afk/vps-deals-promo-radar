@@ -51,4 +51,3 @@ jobs:
           fi
       - name: Report source coverage
         run: python verify.py --health
-
