@@ -1,6 +1,6 @@
 ::ILANG
 [TYPE:config][PROJECT:vps-deals][LANG:zh]
-::STATE{@SITE, "brand":"VPS Deals", "niche":"VPS hosting", "domain":"https://vps-deals-radar-3un.pages.dev", "locale":"en-US", "currency":"USD", "repository":"https://github.com/siliconwoke28-afk/vps-deals-promo-radar"}
+::STATE{@SITE, "brand":"VPS Deals", "niche":"VPS hosting", "domain":"https://vpsdealradar.com", "locale":"en-US", "currency":"USD", "repository":"https://github.com/siliconwoke28-afk/vps-deals-promo-radar"}
 ::MODULE{PROVIDERS|title:抓哪几家 这里改了站就变}
 # 名称 | 官网 | 官方价格或优惠页 | 获批的联盟链接（未批准留空）
 Hostinger | https://www.hostinger.com/ | https://www.hostinger.com/vps-hosting |
