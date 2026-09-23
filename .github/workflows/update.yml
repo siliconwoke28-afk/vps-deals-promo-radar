@@ -38,7 +38,17 @@ jobs:
           git add data/offers.json site/
           if ! git diff --cached --quiet; then
             git commit -m "data: refresh official VPS source snapshot"
-            git push
+            for attempt in 1 2 3; do
+              git fetch origin main
+              if git rebase origin/main && git push origin HEAD:main; then
+                exit 0
+              fi
+              git rebase --abort || true
+              sleep $((attempt * 2))
+            done
+            echo "Failed to publish refreshed snapshot after 3 attempts" >&2
+            exit 1
           fi
       - name: Report source coverage
         run: python verify.py --health
+
