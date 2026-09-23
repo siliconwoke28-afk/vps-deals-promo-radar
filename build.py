@@ -204,6 +204,11 @@ def build(config,data,output=None,now=None):
     page('/404/',f'Page not found | {brand}','This page is not available.','<article class="prose"><h1>This offer is no longer here.</h1><p>It may have expired or failed verification.</p><a href="/">Return to current offers</a></article>',index=False)
     (out/'404.html').write_text((out/'404/index.html').read_text(encoding='utf-8'),encoding='utf-8')
     shutil.copytree(ROOT/'assets',out/'assets')
+    # Search-engine ownership proofs (Google Search Console etc.) must sit at
+    # the site root and survive every rebuild, so they are copied from the
+    # repository root rather than committed into site/, which build() wipes.
+    for proof in sorted(ROOT.glob('google*.html')):
+        shutil.copy2(proof,out/proof.name)
     (out/'data').mkdir(); public_data={**data,'offers':offers}
     (out/'data/offers.json').write_text(json.dumps(public_data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
     (out/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join(f'<url><loc>{xml_escape(url)}</loc><lastmod>{xml_escape(date)}</lastmod></url>' for url,date in sitemap)+'</urlset>\n',encoding='utf-8')

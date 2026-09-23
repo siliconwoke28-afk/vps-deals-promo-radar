@@ -14,6 +14,7 @@ from build import workflow_text
 def verify(root=None):
     cfg=load_config(); root=Path(root or ROOT/'site'); problems=[]; count=0
     for path in root.rglob('*.html'):
+        if re.match(r'google[0-9a-f]{16}\.html$',path.name):continue  # ownership proof, not a content page
         count+=1; text=path.read_text(encoding='utf-8')
         canonical=re.findall(r'<link rel="canonical" href="([^"]+)"',text)
         if len(canonical)!=1 or not canonical[0].startswith(cfg['site']['domain']):problems.append(f'{path}: canonical')
