@@ -73,4 +73,3 @@ If a domain is added, configure it in Pages first, change the I-Lang `domain`, r
 This project implements a small text configuration dialect, not a third-party runtime. `::STATE{@SITE, ...}` contains JSON key/value pairs after the entity marker. `::POLICY{...}` and `::EXTRACT{...}` contain JSON objects. `PROVIDERS` uses four pipe-separated columns; `FIELDS` is whitespace-separated. `RULE` and `BOUNDARY` describe constraints enforced by Python and tests. Unknown executable directives are never evaluated. Configuration is version-controlled and must be treated as trusted maintainer input, never populated from remote page instructions.
 
 站点规则用 I-Lang 协议描述，见 .ilang/site.ilang；协议说明 ilang.ai。
-

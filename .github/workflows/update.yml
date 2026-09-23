@@ -1,0 +1,44 @@
+# Generated from .ilang/site.ilang by build.py --sync-workflow.
+name: Refresh official VPS offers
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['**.py', 'templates/**', 'assets/**', '.ilang/**', 'tests/**', '.github/workflows/update.yml']
+permissions:
+  contents: write
+concurrency:
+  group: vps-offer-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test truth and configuration contracts
+        run: python -m unittest discover -s tests -v
+      - name: Collect official sources
+        id: scrape
+        continue-on-error: true
+        run: python scraper.py
+      - name: Render truthful snapshot (including source failures)
+        run: python build.py
+      - name: Verify generated pages
+        run: python verify.py
+      - name: Commit dated snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/offers.json site/
+          if ! git diff --cached --quiet; then
+            git commit -m "data: refresh official VPS source snapshot"
+            git push
+          fi
+      - name: Report source coverage
+        run: python verify.py --health
