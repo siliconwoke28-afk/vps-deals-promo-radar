@@ -2,7 +2,7 @@
 
 Official VPS prices, clear terms, traceable sources. An independent English-language VPS offer directory built with Python's standard library and static HTML.
 
-**Deployment status:** prepared locally; a live URL must be verified before this status is changed. The configured target is `https://vps-deals-radar-3un.pages.dev` (not a claim that this URL is online).
+**Deployment status:** live and verified at [vps-deals-radar-3un.pages.dev](https://vps-deals-radar-3un.pages.dev/). Cloudflare Pages builds `main` with `python build.py` and publishes `site/`.
 
 ## Defaults used
 
