@@ -1,4 +1,4 @@
-# VPS Deals
+# VPSDealRadar
 
 Official VPS prices, clear terms, traceable sources. An independent English-language VPS offer directory built with Python's standard library and static HTML.
 
@@ -6,7 +6,7 @@ Official VPS prices, clear terms, traceable sources. An independent English-lang
 
 ## Defaults used
 
-- Brand: VPS Deals; repository: `vps-deals-promo-radar`.
+- Brand: VPSDealRadar; repository: `vps-deals-promo-radar`.
 - Niche: VPS hosting; locale: en-US; currency: USD.
 - Seed sources: Hostinger, IONOS, OVHcloud, Hetzner, Vultr, DigitalOcean, Akamai Linode.
 - No affiliate links, commission figures, income claims or social accounts have been invented.
